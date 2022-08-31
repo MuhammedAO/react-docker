@@ -1,11 +1,11 @@
 FROM node:16-alpine
 
 WORKDIR /usr/app
-
+# only run this step if there's a change in the pckg.json file
 COPY ./package.json ./
 
 RUN npm install
-
+# copy over all project files
 COPY ./ ./
 
 CMD ["npm", "run", "start"]
