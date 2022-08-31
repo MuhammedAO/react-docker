@@ -1,4 +1,5 @@
-FROM node:16-alpine as builder 
+# builder : name of this first step
+FROM node:16-alpine as builder   
 
 WORKDIR /usr/app
 
@@ -12,5 +13,5 @@ RUN npm run build
 
 
 FROM nginx 
-
+# nginx will serve the build version
 COPY --from=builder /usr/app/build /usr/share/nginx/html
