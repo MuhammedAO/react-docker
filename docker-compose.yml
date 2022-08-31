@@ -7,8 +7,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - /usr/app/node_modules
+      - /usr/app/node_modules  
       - .:/usr/app
+    restart: always
   tests:
     build: 
      context: .
@@ -17,3 +18,13 @@ services:
       - /usr/app/node_modules
       - .:/usr/app
     command: ["npm", "run", "test"]
+
+
+# services simply means containers
+# volumes -> sets up sort of like a reference thats points back to the local machine and gives docker access to files and folders inside the local machine. similar concept to port mapping
+# /usr/app/node_modules , reference the node modules in the running container path
+# $-v(pwd):/usr/app -> map the personal working directory into the /usr/app folder
+# .:/usr/app (with the ':', signifies trying to map folder outside the container to a folder inside the container) 
+# by setting up this volume, any changes made to the local filesystem gets propagated into the container, the react-server inside the running container sees the change and it updates the page. 
+
+
