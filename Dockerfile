@@ -13,5 +13,7 @@ RUN npm run build
 
 
 FROM nginx 
+# expose port for EBS
+EXPOSE 80 
 # nginx will serve the build version
 COPY --from=builder /usr/app/build /usr/share/nginx/html
